@@ -13,6 +13,7 @@ import numpy as np
 from scipy import ndimage
 import time
 import random
+import sys
 # !pip install pycuda
 
 # Wriite to new raster
@@ -300,7 +301,7 @@ for iPairs in range(len(pairs)):
                 verbose=2,
                 validation_data=(x_test, y_test))
   
-  LSTMmodelName = './output/' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '_0316_LSTM.h5'
+  LSTMmodelName = sys.os["result_folder"]+ '/' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '_0316_LSTM.h5'
   LSTMmodel.save(LSTMmodelName)
   # save the output
   PredDim = [yArray.shape[2], yArray.shape[3]]
@@ -313,6 +314,6 @@ for iPairs in range(len(pairs)):
   yhat = LSTMmodel.predict(x4Pred, verbose=1)
   yPred = yhat.reshape(PredDim[0], PredDim[1], 6)
 
-  array2raster(r'/data_fusion/Landsat_clip/ls_2017073_clip.tif' ,
-               r'/data_fusion/LSTM_2pairs_6bands_' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '.tif',
+  array2raster(sys.os["result_folder"]+'/ls_2017073_clip.tif' ,
+               sys.os["result_folder"]+ '/LSTM_2pairs_6bands_' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '.tif',
                (yPred*10000).astype(int))
