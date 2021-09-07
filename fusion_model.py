@@ -84,17 +84,17 @@ def readImages(pairs = pairs, iPairs = 0):
         if i==0:
             ###############################################
             # change directoties
-            xArray = readRaster('./MODIS_composite_resample/mod_' + days[i]+ '_resample.tif')#[:,0:3000,0:3000]
-            yArray = readRaster('./Landsat_clip/ls_' + days[i]+ '_clip.tif')#[:,0:3000,0:3000]
+            xArray = readRaster('/data_fusion/MODIS_composite_resample/mod_' + days[i]+ '_resample.tif')#[:,0:3000,0:3000]
+            yArray = readRaster('/data_fusion/Landsat_clip/ls_' + days[i]+ '_clip.tif')#[:,0:3000,0:3000]
             xArray = xArray[np.newaxis,:,:,:]
             yArray = yArray[np.newaxis,:,:,:]
         else:
-            xTmp = readRaster('./MODIS_composite_resample/mod_' + days[i]+ '_resample.tif')#[:,0:3000,0:3000]
+            xTmp = readRaster('/data_fusion/MODIS_composite_resample/mod_' + days[i]+ '_resample.tif')#[:,0:3000,0:3000]
             xArray = np.concatenate((xArray,xTmp[np.newaxis,:,:,:]), axis = 0)
             ###############################################
             # we do not have LS images at time 2 for most of the time
             if i==2:
-                yTmp = readRaster('./Landsat_clip/ls_' + days[i]+ '_clip.tif')#[:,0:3000,0:3000]
+                yTmp = readRaster('/data_fusion/Landsat_clip/ls_' + days[i]+ '_clip.tif')#[:,0:3000,0:3000]
                 yArray = np.concatenate((yArray,yTmp[np.newaxis,:,:,:]), axis = 0)
 
     xArray = xArray.astype('float32')
@@ -313,6 +313,6 @@ for iPairs in range(len(pairs)):
   yhat = LSTMmodel.predict(x4Pred, verbose=1)
   yPred = yhat.reshape(PredDim[0], PredDim[1], 6)
 
-  array2raster(r'./Landsat_clip/ls_2017073_clip.tif' ,
-               r'./output/LSTM_2pairs_6bands_' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '.tif',
+  array2raster(r'/data_fusion/Landsat_clip/ls_2017073_clip.tif' ,
+               r'/data_fusion/LSTM_2pairs_6bands_' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '.tif',
                (yPred*10000).astype(int))
