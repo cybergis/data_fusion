@@ -15,7 +15,14 @@
             "min": 1,
             "default_value": 1,
             "step": 1
+        },
+        "gpus": {
+            "max": 8,
+            "min": 1,
+            "default_value": 2,
+            "step": 1
         }
     },
+    
     "supported_hpc": ["bridges_community_gpu"]
 }
