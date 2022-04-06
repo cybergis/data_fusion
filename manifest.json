@@ -7,7 +7,7 @@
     },
     "slurm_input_rules": {
         "time": {
-            "max": 50,
+            "max": 150,
             "min": 10,
             "default_value": 20,
             "step": 1,
