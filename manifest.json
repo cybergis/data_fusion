@@ -5,5 +5,5 @@
     "slurm_ceiling": {
         "walltime": "1:30:00"
     },
-    "supported_hpc": ["bridges_community"]
+    "supported_hpc": ["bridges_community_gpu"]
 }
