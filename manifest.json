@@ -5,5 +5,20 @@
     "slurm_ceiling": {
         "walltime": "1:30:00"
     },
+    "slurm_input_rules": {
+        "time": {
+            "max": 50,
+            "min": 10,
+            "default_value": 20,
+            "step": 1,
+            "unit": "Minutes"
+        },
+        "num_of_task": {
+            "max": 6,
+            "min": 1,
+            "default_value": 4,
+            "step": 1
+        }
+    },
     "supported_hpc": ["bridges_community_gpu"]
 }
