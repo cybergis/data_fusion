@@ -4,5 +4,6 @@
     "execution_stage": "python fusion_model.py",
     "slurm_ceiling": {
         "walltime": "1:30:00"
-    }
+    },
+    "supported_hpc": ["bridges_community"]
 }
