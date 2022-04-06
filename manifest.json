@@ -6,14 +6,14 @@
         "time": {
             "max": 150,
             "min": 10,
-            "default_value": 20,
+            "default_value": 100,
             "step": 1,
             "unit": "Minutes"
         },
         "num_of_task": {
             "max": 6,
             "min": 1,
-            "default_value": 4,
+            "default_value": 2,
             "step": 1
         }
     },
