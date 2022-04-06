@@ -2,9 +2,6 @@
     "name": "data fusion",
     "container": "python",
     "execution_stage": "python fusion_model.py",
-    "slurm_ceiling": {
-        "walltime": "1:30:00"
-    },
     "slurm_input_rules": {
         "time": {
             "max": 150,
