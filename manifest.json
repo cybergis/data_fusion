@@ -13,7 +13,7 @@
         "num_of_task": {
             "max": 6,
             "min": 1,
-            "default_value": 2,
+            "default_value": 1,
             "step": 1
         }
     },
