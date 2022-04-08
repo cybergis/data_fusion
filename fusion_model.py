@@ -7,44 +7,43 @@ print(device_lib.list_local_devices())
 print(tf.__version__)
 
 import matplotlib.pyplot as plt
-import gdal, ogr, osr, os
 import os
 import numpy as np
 from scipy import ndimage
 import time
 import random
 import sys
+import rasterio
+
 # !pip install pycuda
 
 # Wriite to new raster
 # requires a reference raster file 'rasterfn'
-def array2raster(rasterfn,newRasterfn,array):
-    raster = gdal.Open(rasterfn)
 
-    ras = rxr.open_rasterio(rasterfn)
-    geotransform = raster.GetGeoTransform()
-    originX = geotransform[0]
-    originY = geotransform[3]
-    pixelWidth = geotransform[1]
-    pixelHeight = geotransform[5]
-    cols = raster.RasterXSize
-    rows = raster.RasterYSize
+def array2raster(refereceRasterPath, outPath, inArray, nBands=6):
+  with rasterio.open(refereceRasterPath) as src:
+    T0 = src.transform
+    CRS  = src.crs
+  
+  print(CRS)
+  if((nBands == 1) & (len(inArray.shape) == 2)):
+    inArray = inArray[np.newaxis,:,:]
+    
+  if(inArray.shape[0] != nBands):
+    inArray = inArray.transpose(2, 0, 1)
 
-    driver = gdal.GetDriverByName('GTiff')
-    outRaster = driver.Create(newRasterfn, cols, rows, 6, gdal.GDT_Int16)
-    outRaster.SetGeoTransform((originX, pixelWidth, 0, originY, 0, pixelHeight))
-    for i in list(range(1, 7)):
-        outband = outRaster.GetRasterBand(i)
-        outband.WriteArray(array[:,:,(i-1)])
-    outRasterSRS = osr.SpatialReference()
-    outRasterSRS.ImportFromWkt(raster.GetProjectionRef())
-    outRaster.SetProjection(outRasterSRS.ExportToWkt())
-    outband.FlushCache()
+  out_dataset = rasterio.open(outPath, 'w', driver = 'GTiff',
+                              height = inArray.shape[1], width = inArray.shape[2], 
+                              count = nBands, dtype = str(inArray.dtype),
+                              crs = CRS,
+                              transform = T0)
+  out_dataset.write(inArray)
+  out_dataset.close()
 
 # read raster data with gdal
 def readRaster(rasterfn, factor = 1):
-    rasGdal = gdal.Open(rasterfn)
-    ras = rasGdal.ReadAsArray()
+    rasGdal = rasterio.open(rasterfn)
+    ras = rasGdal.read()
     rasfloat = ras.astype('float32') / factor
     return rasfloat
 
