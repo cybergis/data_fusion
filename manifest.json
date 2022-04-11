@@ -1,6 +1,6 @@
 {
     "name": "data fusion",
-    "container": "cybergisx-0.4",
+    "container": "datafusion",
     "execution_stage": "python fusion_model.py",
     "slurm_input_rules": {
         "time": {
