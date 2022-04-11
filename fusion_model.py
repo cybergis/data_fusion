@@ -84,8 +84,8 @@ def readImages(pairs = pairs, iPairs = 0):
         if i==0:
             ###############################################
             # change directoties
-            xArray = readRaster('/data_fusion/MODIS_composite_resample/mod_' + days[i]+ '_resample.tif')#[:,0:3000,0:3000]
-            yArray = readRaster('/data_fusion/Landsat_clip/ls_' + days[i]+ '_clip.tif')#[:,0:3000,0:3000]
+            xArray = readRaster('/datafusion/MODIS_composite_resample/mod_' + days[i]+ '_resample.tif')#[:,0:3000,0:3000]
+            yArray = readRaster('/datafusion/Landsat_clip/ls_' + days[i]+ '_clip.tif')#[:,0:3000,0:3000]
             xArray = xArray[np.newaxis,:,:,:]
             yArray = yArray[np.newaxis,:,:,:]
         else:
