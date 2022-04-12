@@ -300,7 +300,7 @@ for iPairs in range(len(pairs)):
                 verbose=2,
                 validation_data=(x_test, y_test))
   
-  LSTMmodelName = sys.os["result_folder"]+ '/' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '_0316_LSTM.h5'
+  LSTMmodelName = os.environ["result_folder"]+ '/' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '_0316_LSTM.h5'
   LSTMmodel.save(LSTMmodelName)
   # save the output
   PredDim = [yArray.shape[2], yArray.shape[3]]
