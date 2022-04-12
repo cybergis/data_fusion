@@ -4,9 +4,9 @@
     "execution_stage": "python fusion_model.py",
     "slurm_input_rules": {
         "time": {
-            "max": 150,
-            "min": 10,
-            "default_value": 100,
+            "max": 500,
+            "min": 300,
+            "default_value": 300,
             "step": 1,
             "unit": "Minutes"
         },
