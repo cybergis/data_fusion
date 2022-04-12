@@ -313,6 +313,6 @@ for iPairs in range(len(pairs)):
   yhat = LSTMmodel.predict(x4Pred, verbose=1)
   yPred = yhat.reshape(PredDim[0], PredDim[1], 6)
 
-  array2raster(sys.os["result_folder"]+'/ls_2017073_clip.tif' ,
-               sys.os["result_folder"]+ '/LSTM_2pairs_6bands_' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '.tif',
+  array2raster(os.environ["result_folder"]+'/ls_2017073_clip.tif' ,
+               os.environ["result_folder"]+ '/LSTM_2pairs_6bands_' + pairs[iPairs][0] + '_' + pairs[iPairs][1] + '_' + pairs[iPairs][2] + '.tif',
                (yPred*10000).astype(int))
