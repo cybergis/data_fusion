@@ -11,7 +11,7 @@
             "unit": "Minutes"
         },
         "num_of_task": {
-            "max": 6,
+            "max": 4,
             "min": 1,
             "default_value": 1,
             "step": 1
