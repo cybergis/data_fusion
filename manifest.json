@@ -17,9 +17,9 @@
             "step": 1
         },
         "gpus": {
-            "max": 16,
-            "min": 8,
-            "default_value": 8,
+            "max": 2,
+            "min": 1,
+            "default_value": 1,
             "step": 1
         }
     },
