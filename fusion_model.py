@@ -34,7 +34,7 @@ def array2raster(refereceRasterPath, outPath, inArray, nBands=6):
 
   out_dataset = rasterio.open(outPath, 'w', driver = 'GTiff',
                               height = inArray.shape[1], width = inArray.shape[2], 
-                              count = nBands, dtype = str(inArray.dtype),
+                              count = nBands, dtype = 'int16',
                               crs = CRS,
                               transform = T0)
   out_dataset.write(inArray)
